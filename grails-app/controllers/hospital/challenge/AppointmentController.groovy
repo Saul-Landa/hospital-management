@@ -3,22 +3,25 @@ package hospital.challenge
 class AppointmentController {
 
     def appointmentService
+    def doctorService
+    def medicalOfficeService
+    def patientService
 
     def index() {
         def appointmentsList = appointmentService.list(params)
         [
                 appointmentsList: appointmentsList,
                 appointmentsListCount: appointmentsList?.getTotalCount(),
-                doctors: Doctor.findAll(),
-                medicalOffices: MedicalOffice.findAll()
+                doctors: doctorService.findAll(),
+                medicalOffices: medicalOfficeService.findAll()
         ]
     }
 
     def create() {
         [
-                doctors: Doctor.findAll(),
-                medicalOffices: MedicalOffice.findAll(),
-                patients: Patient.findAll(),
+                doctors: doctorService.findAll(),
+                medicalOffices: medicalOfficeService.findAll(),
+                patients: patientService.findAll(),
                 appointment: new Appointment()
         ]
     }
@@ -42,9 +45,9 @@ class AppointmentController {
             return
         }
         [
-                doctors: Doctor.findAll(),
-                medicalOffices: MedicalOffice.findAll(),
-                patients: Patient.findAll(),
+                doctors: doctorService.findAll(),
+                medicalOffices: medicalOfficeService.findAll(),
+                patients: patientService.findAll(),
                 appointment: appointment
         ]
     }

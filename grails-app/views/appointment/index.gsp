@@ -120,6 +120,9 @@
                                         <g:if test="${ !appointment?.isCanceled && appointment?.startDate > new Date() }">
                                             <a href="${ createLink( controller: 'appointment', action: 'cancel', id: appointment?.id ) }"><i class="fa fa-trash"></i></a>
                                         </g:if>
+                                        <g:if test="${ appointment?.isCanceled }">
+                                            <span class="badge badge-warning"><g:message code="default.appointment.cancel.label"/></span>
+                                        </g:if>
                                     </td>
                                 </tr>
                             </g:each>

@@ -6,7 +6,7 @@ import grails.gorm.services.Service
 abstract class DoctorService implements IDoctorService {
 
     @Override
-    def findAll(params) {
+    def list(params) {
         params.max = params?.max ?: 10
         params?.offset = params?.offset ? params?.offset as Integer : 0
 
@@ -17,5 +17,10 @@ abstract class DoctorService implements IDoctorService {
         }
 
         return doctorList
+    }
+
+    @Override
+    def findAll() {
+        return Doctor.findAll()
     }
 }
