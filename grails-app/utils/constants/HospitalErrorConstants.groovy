@@ -2,7 +2,7 @@ package constants
 
 final class HospitalErrorConstants {
 
-    static String BUSY_MEDICAL_OFFICE_ERROR = "Ya existe una cita es este consultario a esta hora"
+    static String BUSY_MEDICAL_OFFICE_ERROR = "Ya existe una cita es este consultorio a esta hora"
     static String BUSY_DOCTOR_ERROR = "El doctor ya tiene una cita esta hora"
     static String LIMIT_APPOINTMENT_ERROR = "El doctor ya tiene 8 citas para este día"
     static String BUSY_PATIENT_ERROR = "El paciente tiene una cita próxima (2 horas)"

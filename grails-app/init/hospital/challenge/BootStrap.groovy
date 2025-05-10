@@ -7,6 +7,7 @@ class BootStrap {
     def init = { servletContext ->
         createDoctors()
         createMedicalOffices()
+        createPatients()
     }
 
     def destroy = {
@@ -27,6 +28,16 @@ class BootStrap {
 
         medicalOffices.each {
             if(!MedicalOffice.findByNumberAndFloor(it?.number, it?.floor)) {
+                it?.save()
+            }
+        }
+    }
+
+    def createPatients() {
+        def patients = helperService.buildPatients()
+
+        patients.each {
+            if (!Patient.findByFirstNameAndFatherLastName(it?.firstName, it?.fatherLastName)) {
                 it?.save()
             }
         }

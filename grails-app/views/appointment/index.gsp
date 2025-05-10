@@ -113,11 +113,11 @@
                                 <tr>
                                     <td><a href="${createLink(controller: 'appointment', action: 'edit', id: appointment?.id)}"><i class="fa fa-search"></i></a></td>
                                     <td>${appointment?.doctor?.fullName}</td>
-                                    <td>${appointment?.patientName}</td>
+                                    <td>${appointment?.patient?.fullName}</td>
                                     <td>${appointment?.medicalOffice?.room}</td>
                                     <td><g:formatDate format="MM/dd/yyyy hh:mm aaa" date="${appointment?.startDate}"/> - <g:formatDate format="MM/dd/yyyy hh:mm aaa" date="${appointment?.endDate}"/></td>
                                     <td>
-                                        <g:if test="${ !appointment?.isCanceled }">
+                                        <g:if test="${ !appointment?.isCanceled && appointment?.startDate > new Date() }">
                                             <a href="${ createLink( controller: 'appointment', action: 'cancel', id: appointment?.id ) }"><i class="fa fa-trash"></i></a>
                                         </g:if>
                                     </td>

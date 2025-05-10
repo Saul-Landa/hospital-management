@@ -4,17 +4,17 @@ class Appointment {
 
     Date startDate
     Date endDate
-    String patientName
+    Patient patient
     Doctor doctor
     MedicalOffice medicalOffice
     Boolean isCanceled = 0
 
-    static belongsTo = [ Doctor, MedicalOffice ]
+    static belongsTo = [ Doctor, MedicalOffice, Patient ]
 
     static constraints = {
         startDate nullable: false
         endDate nullable: false
-        patientName nullable: false
+        patient nullable: false
         doctor nullable: false
         medicalOffice nullable: false
     }

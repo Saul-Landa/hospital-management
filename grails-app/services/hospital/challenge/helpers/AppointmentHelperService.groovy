@@ -3,6 +3,7 @@ package hospital.challenge.helpers
 import hospital.challenge.Appointment
 import hospital.challenge.Doctor
 import hospital.challenge.MedicalOffice
+import hospital.challenge.Patient
 
 import static constants.HospitalErrorConstants.BUSY_DOCTOR_ERROR
 import static constants.HospitalErrorConstants.BUSY_MEDICAL_OFFICE_ERROR
@@ -18,11 +19,8 @@ class AppointmentHelperService {
             medicalOffice {
                 eq('id', appointment?.medicalOffice?.id)
             }
-            or {
-                eq('startDate', appointment.startDate)
-                between('startDate', appointment.startDate, appointment.endDate)
-                between('endDate', appointment.startDate, appointment.endDate)
-            }
+            le('startDate', appointment.endDate)
+            ge('endDate', appointment.startDate)
             if (appointment?.id) {
                 ne('id', appointment?.id)
             }
@@ -34,11 +32,8 @@ class AppointmentHelperService {
             doctor {
                 eq('id', appointment?.doctor?.id)
             }
-            or {
-                eq('startDate', appointment.startDate)
-                between('startDate', appointment.startDate, appointment.endDate)
-                between('endDate', appointment.startDate, appointment.endDate)
-            }
+            le('startDate', appointment.endDate)
+            ge('endDate', appointment.startDate)
             if (appointment?.id) {
                 ne('id', appointment?.id)
             }
@@ -63,7 +58,7 @@ class AppointmentHelperService {
         calendarEnd.add(Calendar.HOUR_OF_DAY, 2)
 
         Appointment.createCriteria().list() {
-            eq('patientName', appointment.patientName)
+            eq('patient', appointment.patient)
             or {
                 between('startDate', calendarStart.time, calendarEnd.time)
                 between('endDate', calendarStart.time, calendarEnd.time)
@@ -79,16 +74,16 @@ class AppointmentHelperService {
         appointment.endDate = helperService.convertStringToDate(params?.endDate)
         appointment.doctor = Doctor.get(params?.doctor as Long)
         appointment.medicalOffice = MedicalOffice.get(params?.medicalOffice as Long)
-        appointment.patientName = params?.patientName
+        appointment.patient = Patient.get(params?.patient as Long)
 
         return appointment
     }
 
     def validateToSave(Appointment appointment) {
 
-        if (validateOffice(appointment)) return [errors: BUSY_MEDICAL_OFFICE_ERROR, appointment: appointment ]
-
         if (validateDoctor(appointment)) return [ errors: BUSY_DOCTOR_ERROR, appointment: appointment ]
+
+        if (validateOffice(appointment)) return [errors: BUSY_MEDICAL_OFFICE_ERROR, appointment: appointment ]
 
         if (validateTotal(appointment) > 8) return [ errors: LIMIT_APPOINTMENT_ERROR, appointment: appointment ]
 

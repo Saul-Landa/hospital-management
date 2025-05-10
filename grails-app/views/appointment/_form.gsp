@@ -24,8 +24,14 @@
     </div>
     <div class="form-group col-md-6">
         <label for="patient"><g:message code="default.patient.label"/></label>
-        <input type="text" class="form-control" name="patientName" value="${appointment?.patientName}"
-               id="patient" autocomplete="off" required>
+        <g:select name="patient" id="patient"
+                  class="form-control"
+                  aria-hidden="true"
+                  from="${patients}" value="${appointment?.patient?.id}" optionValue="fullName"
+                  optionKey="id"
+                  noSelection="['': 'Select']"
+                  style="width:100%" required="required"
+        />
     </div>
     <div class="form-group col-md-6">
         <%

@@ -1,5 +1,7 @@
 package hospital.challenge
 
+import static constants.HospitalErrorConstants.APPOINTMENT_CANCELED_ERROR
+import static constants.HospitalErrorConstants.APPOINTMENT_DONE_ERROR
 import static constants.HospitalConstants.FORMAT_DATE
 import static constants.HospitalConstants.APPOINTMENT_CANCELED
 
@@ -62,7 +64,7 @@ class AppointmentService {
         }
     }
 
-    def update(appointmentId, params) {
+    def update(params, Long appointmentId) {
         def appointment = getById(appointmentId)
         Appointment.withTransaction { status ->
             appointment = appointmentHelperService.buildAppointment(appointment, params)
@@ -84,11 +86,11 @@ class AppointmentService {
         }
     }
 
-    def getById(appointmentId) {
+    def getById(Long appointmentId) {
         return Appointment.get(appointmentId)
     }
 
-    def cancel(appointmentId) {
+    def cancel(Long appointmentId) {
         def appointment = getById(appointmentId)
         if (appointment.isCanceled) {
             return [ errors: APPOINTMENT_CANCELED_ERROR ]

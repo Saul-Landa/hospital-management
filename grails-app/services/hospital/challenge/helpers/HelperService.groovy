@@ -3,6 +3,7 @@ package hospital.challenge.helpers
 import grails.gorm.transactions.Transactional
 import hospital.challenge.Doctor
 import hospital.challenge.MedicalOffice
+import hospital.challenge.Patient
 
 import java.text.SimpleDateFormat
 
@@ -27,9 +28,9 @@ class HelperService {
     def buildDoctors() {
         [
                 new Doctor( firstName: 'Saúl', fatherLastName: 'Landa', motherLastName: 'García', specialty: 'Cardiología' ),
-                new Doctor( firstName: 'Daniela', fatherLastName: 'Espinoza', motherLastName: 'García', specialty: 'Dermatología' ),
-                new Doctor( firstName: 'Felipe', fatherLastName: 'Hernández', motherLastName: 'Morales', specialty: 'Gastroenterología' ),
-                new Doctor( firstName: 'Gustavo', fatherLastName: 'Flores', motherLastName: 'Luna', specialty: 'Pediatría' ),
+                new Doctor( firstName: 'Daniela', fatherLastName: 'Ramirez', motherLastName: 'García', specialty: 'Dermatología' ),
+                new Doctor( firstName: 'Felipe', fatherLastName: 'Bustamante', motherLastName: 'Morales', specialty: 'Gastroenterología' ),
+                new Doctor( firstName: 'Gustavo', fatherLastName: 'Mendoza', motherLastName: 'Luna', specialty: 'Pediatría' ),
         ]
     }
 
@@ -40,6 +41,15 @@ class HelperService {
                 new MedicalOffice( number: '5', floor: 'Nivel 3' ),
                 new MedicalOffice( number: '6-A', floor: 'Nivel 1' ),
                 new MedicalOffice( number: '12', floor: 'Nivel 2' ),
+        ]
+    }
+
+    def buildPatients() {
+        [
+                new Patient( firstName: 'Ricardo', fatherLastName: 'Flores', motherLastName: 'Magón' ),
+                new Patient( firstName: 'Gerardo', fatherLastName: 'Gonzalez', motherLastName: 'García' ),
+                new Patient( firstName: 'Octavio', fatherLastName: 'Cruz', motherLastName: 'Rivera' ),
+                new Patient( firstName: 'Ernesto', fatherLastName: 'Flores', motherLastName: 'Carrillo' ),
         ]
     }
 }

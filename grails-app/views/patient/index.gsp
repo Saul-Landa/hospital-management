@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <g:set var="entityName" value="${message(code: 'default.doctor.label', default: 'Doctor')}" />
-    <title><g:message code="default.doctor.list.label"/></title>
+    <g:set var="entityName" value="${message(code: 'default.patient.label.label', default: 'Paciente')}" />
+    <title><g:message code="default.patient.list.label"/></title>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 </head>
 <body>
@@ -14,7 +14,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><g:message code="default.doctor.list.label"/></li>
+                        <li class="breadcrumb-item active" aria-current="page"><g:message code="default.patient.list.label"/></li>
                     </ol>
                 </nav>
             </div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="${createLink(controller: 'doctor', action: 'index')}" class="btn btn-warning">
+                        <a href="${createLink(controller: 'patient', action: 'index')}" class="btn btn-warning">
                             <i class="fa fa-times"></i> <g:message code="default.cancel.label" />
                         </a>
                         <button type="submit" class="btn btn-primary">
@@ -42,7 +42,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4><g:message code="default.doctor.list.label"/></h4>
+                                <h4><g:message code="default.patient.label"/></h4>
                             </div>
                         </div>
                     </div>
@@ -52,22 +52,20 @@
                             <tr>
                                 <th><g:message code="default.firstName.label"/></th>
                                 <th><g:message code="default.lastName.label"/></th>
-                                <th><g:message code="default.doctor.specialty.label"/></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <g:each var="doctor" in="${doctorList}">
+                            <g:each var="patient" in="${patientList}">
                                 <tr>
-                                    <td>${doctor?.firstName}</td>
-                                    <td>${doctor?.fatherLastName} ${doctor?.motherLastName}</td>
-                                    <td>${doctor?.specialty}</td>
+                                    <td>${patient?.firstName}</td>
+                                    <td>${patient?.fatherLastName} ${patient?.motherLastName}</td>
                                 </tr>
                             </g:each>
                             </tbody>
                         </table>
                         <div class="center">
                             <ul class="pagination">
-                                <g:paginate total="${doctorListCount ?: 0}" params="${params}" />
+                                <g:paginate total="${patientListCount ?: 0}" params="${params}" />
                             </ul>
                         </div>
                     </div>

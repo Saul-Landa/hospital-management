@@ -15,7 +15,12 @@ class AppointmentController {
     }
 
     def create() {
-        [doctors: Doctor.findAll(), medicalOffices: MedicalOffice.findAll(), appointment: new Appointment()]
+        [
+                doctors: Doctor.findAll(),
+                medicalOffices: MedicalOffice.findAll(),
+                patients: Patient.findAll(),
+                appointment: new Appointment()
+        ]
     }
 
     def save() {
@@ -36,11 +41,16 @@ class AppointmentController {
             notFound()
             return
         }
-        [doctors: Doctor.findAll(), medicalOffices: MedicalOffice.findAll(), appointment: appointment]
+        [
+                doctors: Doctor.findAll(),
+                medicalOffices: MedicalOffice.findAll(),
+                patients: Patient.findAll(),
+                appointment: appointment
+        ]
     }
 
     def update(Long id) {
-        def response = appointmentService.update(id, params)
+        def response = appointmentService.update(params, id)
         if (response?.errors) {
             flash.errors = response?.errors
             redirect(action: 'edit', id: id)

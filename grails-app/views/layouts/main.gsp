@@ -24,10 +24,19 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav">
                     <li class="nav-item px-2 ${controllerName == 'appointment' ? 'active' : ''}">
-                        <a class="nav-link" href="${ createLink(controller: 'appointment') }">Appointments</a>
+                        <a class="nav-link" href="${ createLink(controller: 'appointment') }">
+                            <g:message code="default.appointment.title.label"/>
+                        </a>
                     </li>
                     <li class="nav-item px-2 ${controllerName == 'doctor' ? 'active' : ''}">
-                        <a class="nav-link" href="${ createLink(controller: 'doctor') }">Doctors</a>
+                        <a class="nav-link" href="${ createLink(controller: 'doctor') }">
+                            <g:message code="default.doctor.title.label"/>
+                        </a>
+                    </li>
+                    <li class="nav-item px-2 ${controllerName == 'patient' ? 'active' : ''}">
+                        <a class="nav-link" href="${ createLink(controller: 'patient') }">
+                            <g:message code="default.patient.title.label"/>
+                        </a>
                     </li>
                 </ul>
             </div>

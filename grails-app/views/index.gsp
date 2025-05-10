@@ -20,10 +20,13 @@
                     <div class="card-body">
                         <div class="list-group">
                             <a href="${ createLink(controller: 'appointment', action: 'index') }" class="list-group-item list-group-item-action">
-                                Appointments
+                                <g:message code="default.appointment.title.label"/>
                             </a>
                             <a href="${ createLink(controller: 'doctor') }" class="list-group-item list-group-item-action">
-                                Doctors
+                                <g:message code="default.doctor.title.label"/>
+                            </a>
+                            <a href="${ createLink(controller: 'patient') }" class="list-group-item list-group-item-action">
+                                <g:message code="default.patient.title.label"/>
                             </a>
                         </div>
                     </div>
